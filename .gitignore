@@ -1,4 +1,13 @@
+# Vim
+.swp
+.bak
+
 # C/C++
 bin/
 obj/
 a.out
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class

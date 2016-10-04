@@ -9,4 +9,4 @@ all:
 	$(CC) -o $(BIN)pointers $(OBJ)pointers.o
 
 clean:
-	rm -f $(BIN)/*
+	rm -f $(BIN)/* $(OBJ)/*
