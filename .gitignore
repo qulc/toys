@@ -1,6 +1,6 @@
 # Vim
-.swp
-.bak
+*.swp
+*.bak
 
 # C/C++
 bin/
