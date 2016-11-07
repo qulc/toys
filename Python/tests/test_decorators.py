@@ -15,6 +15,7 @@ class TestDecorator(unittest.TestCase):
                 raise ValueError
             return n
 
-        n = func1()
-        self.assertEqual(n, [0, 0])
+        self.assertEqual(func1(), [0, 0])
+        with self.assertRaises(AttributeError):
+            func1('')
 
