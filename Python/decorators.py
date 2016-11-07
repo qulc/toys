@@ -1,5 +1,6 @@
 from functools import wraps
 
+
 def retry(attempt=3):
     def decorator(func):
         @wraps(func)
