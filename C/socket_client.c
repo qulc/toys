@@ -1,6 +1,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <unistd.h>
 
 int main()
 {
@@ -15,6 +16,8 @@ int main()
 	connect(sock, (struct sockaddr*)&addr, sizeof(addr));
 
 	send(sock, "abcdefg", 3, 0);
+
+	close(sock);
 
 	return 0;
 }
