@@ -1,4 +1,6 @@
 #include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
 
 int main()
 {
@@ -8,9 +10,11 @@ int main()
 	addr.sin_family = AF_INET;
 	addr.sin_port = htons(5000);
 
-	connect(sock, addr, sizeof(addr));
+	inet_aton("127.0.0.1", &addr.sin_addr);
 
-	send(sock, "abc", 3, 0);
+	connect(sock, (struct sockaddr*)&addr, sizeof(addr));
+
+	send(sock, "abcdefg", 3, 0);
 
 	return 0;
 }
