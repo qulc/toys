@@ -14,7 +14,7 @@ int main()
 	addr.sin_port = htons(5000);
 	addr.sin_addr.s_addr = INADDR_ANY;
 
-    int s = socket(AF_INET, SOCK_STREAM, 0);
+	int s = socket(AF_INET, SOCK_STREAM, 0);
 
 	if (bind(s, (struct sockaddr*)&addr, sizeof(addr)) == -1)
 	{
