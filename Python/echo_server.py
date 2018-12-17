@@ -8,8 +8,8 @@ s.listen(1)
 while True:
     conn, addr = s.accept()
     with conn:
-        print('Connected by', addr)
         data = conn.recv(1024)
         print(data)
         conn.send(data)
 
+s.close()

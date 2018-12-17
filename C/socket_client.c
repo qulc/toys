@@ -5,19 +5,18 @@
 
 int main()
 {
-	int sock = socket(AF_INET, SOCK_STREAM, 0);
+	int s = socket(AF_INET, SOCK_STREAM, 0);
 
 	struct sockaddr_in addr;
 	addr.sin_family = AF_INET;
+	inet_aton("127.0.0.1", &addr.sin_addr);
 	addr.sin_port = htons(5000);
 
-	inet_aton("127.0.0.1", &addr.sin_addr);
+	connect(s, (struct sockaddr*)&addr, sizeof(addr));
 
-	connect(sock, (struct sockaddr*)&addr, sizeof(addr));
+	send(s, "abcdefg", 3, 0);
 
-	send(sock, "abcdefg", 3, 0);
-
-	close(sock);
+	close(s);
 
 	return 0;
 }
