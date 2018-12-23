@@ -2,10 +2,12 @@
 #include <sys/socket.h>
 #include <sys/epoll.h>
 
-#include <stdio.h>
 #include <unistd.h>
-#include <string.h>
 #include <fcntl.h>
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
 
 int main()
 {
@@ -26,7 +28,7 @@ int main()
 
 	epoll_ctl(epfd, EPOLL_CTL_ADD, s, &ev);
 
-	while (1)
+	while (true)
 	{
 		struct epoll_event events[10];
 		int nfds = epoll_wait(epfd, events, 10, -1);

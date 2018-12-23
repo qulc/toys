@@ -3,6 +3,7 @@
 #include <unistd.h>
 
 #include <stdio.h>
+#include <stdbool.h>
 #include <string.h>
 #include <errno.h>
 
@@ -28,7 +29,7 @@ int main()
 	
 	char buf[1024];
 
-	while (1)
+	while (true)
 	{
 		int conn = accept(s, (struct sockaddr*)&client, &len);
 
