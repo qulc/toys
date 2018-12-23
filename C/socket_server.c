@@ -41,7 +41,4 @@ int main()
 		
 		close(conn);
 	}	
-	// close(s);
-
-	return 0;
 }
