@@ -14,7 +14,7 @@ int main()
 
 	connect(s, (struct sockaddr*)&addr, sizeof(addr));
 
-	send(s, "abcdefg", 3, 0);
+	write(s, "abcdefg", 3);
 
 	close(s);
 

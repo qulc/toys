@@ -33,13 +33,9 @@ int main()
 
 		for (int n = 0; n < nfds; n++)
 		{
-			printf("ss: %d\n", nfds);
-
 			int evfd = events[n].data.fd;
 			if (evfd == s)
 			{
-				puts("fuck \n");
-
 				struct sockaddr_in client;
 				int addrlen = sizeof(client);
 				int conn = accept(s, (struct sockaddr*) &client, &addrlen);
@@ -60,6 +56,8 @@ int main()
 
 				read(evfd, buf, 1024);
 				puts(buf);
+
+				write(evfd, buf, strlen(buf));
 
 				close(evfd);
 			}
