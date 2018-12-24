@@ -17,9 +17,16 @@ int main()
 	addr.sin_addr.s_addr = INADDR_ANY;
 
 	int s = socket(AF_INET, SOCK_STREAM | SOCK_NONBLOCK, 0);
+	int optval = 1;
+	setsockopt(s, SOL_SOCKET, SO_REUSEADDR, &optval, sizeof(optval));
 
-	bind(s, (struct sockaddr*) &addr, sizeof(addr));
-    listen(s, 5);
+	int b = bind(s, (struct sockaddr*) &addr, sizeof(addr));
+	if (b == -1)
+	{
+		perror("bind error");
+		return -1;
+	}
+	listen(s, 10);
 
 	int epfd = epoll_create1(0);
 	struct epoll_event ev;

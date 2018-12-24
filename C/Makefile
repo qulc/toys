@@ -1,12 +1,13 @@
 CC=cc
 
-BIN=bin/
-OBJ=obj/
+BIN=bin
 
 all:
-	mkdir -p $(BIN) $(OBJ)
-	$(CC) -o $(OBJ)pointers.o -c pointers.c
-	$(CC) -o $(BIN)pointers $(OBJ)pointers.o
+	mkdir -p $(BIN)
+	$(CC) pointers.c -o $(BIN)/pointers
+	$(CC) epoll_server.c -o $(BIN)/epoll_server
+	$(CC) socket_server.c -o $(BIN)/server
+	$(CC) socket_client.c -o $(BIN)/client
 
 clean:
-	rm -f $(BIN)/* $(OBJ)/*
+	rm -rf $(BIN)/

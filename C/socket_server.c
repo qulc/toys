@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
-#include <errno.h>
 
 
 int main()
@@ -16,10 +15,13 @@ int main()
 	addr.sin_addr.s_addr = INADDR_ANY;
 
 	int s = socket(AF_INET, SOCK_STREAM, 0);
+	int optval = 1;
+	setsockopt(s, SOL_SOCKET, SO_REUSEADDR, &optval, sizeof(optval));
 
-	if (bind(s, (struct sockaddr*)&addr, sizeof(addr)) == -1)
+	int b = bind(s, (struct sockaddr*)&addr, sizeof(addr));
+	if (b == -1)
 	{
-		puts(strerror(errno));
+		perror("bind error");
 		return -1;
 	}
 	listen(s, 10);
