@@ -29,18 +29,19 @@ int main()
 	struct sockaddr_in client;
 	int len = sizeof(client);
 	
-	char buf[1024];
+	char buf[256];
 
 	while (true)
 	{
 		int conn = accept(s, (struct sockaddr*)&client, &len);
 
-		bzero(buf, 1024);
-		read(conn, buf, 1024);
+		bzero(buf, 256);
+		read(conn, buf, 256);
 
-		puts(buf);
+		// puts(buf);
 
-		write(conn, buf, strlen(buf));
+		char *response = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\nfuck\n";
+		write(conn, response, strlen(response));
 		
 		close(conn);
 	}	

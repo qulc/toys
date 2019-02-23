@@ -11,6 +11,7 @@ all:
 	$(CC) socket_client.c -o $(BIN)/client
 	# thread
 	$(CC) pthread.c -o $(BIN)/pthread -pthread
+	$(CC) pthread_server.c -o $(BIN)/pthread_server -pthread
 
 clean:
 	rm -rf $(BIN)/
