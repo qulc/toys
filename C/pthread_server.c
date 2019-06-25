@@ -8,13 +8,13 @@
 #include <string.h>
 #include <pthread.h>
 
-struct ThreadConn {
+struct ThreadConn
+{
 	pthread_t id;
 	int conn;
 };
 
-
-void* conn_handle(void* ptr)
+void *conn_handle(void *ptr)
 {
 	struct ThreadConn *info = (struct ThreadConn *)ptr;
 	int conn = info->conn;
@@ -33,7 +33,6 @@ void* conn_handle(void* ptr)
 	free(info);
 }
 
-
 int main()
 {
 	struct sockaddr_in addr;
@@ -45,7 +44,7 @@ int main()
 	int optval = 1;
 	setsockopt(s, SOL_SOCKET, SO_REUSEADDR, &optval, sizeof(optval));
 
-	int b = bind(s, (struct sockaddr*)&addr, sizeof(addr));
+	int b = bind(s, (struct sockaddr *)&addr, sizeof(addr));
 	if (b == -1)
 	{
 		perror("bind error");
@@ -60,7 +59,7 @@ int main()
 	{
 		struct ThreadConn *info = malloc(sizeof(struct ThreadConn));
 
-		info->conn = accept(s, (struct sockaddr*)&client, &len);
+		info->conn = accept(s, (struct sockaddr *)&client, &len);
 
 		pthread_create(&(info->id), NULL, conn_handle, info);
 	}

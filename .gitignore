@@ -2,6 +2,9 @@
 *.swp
 *.bak
 
+# VSCode
+.vscode/
+
 # C/C++
 bin/
 obj/

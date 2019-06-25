@@ -8,7 +8,8 @@ int main(int argc, char *argv[])
 
     int length = sizeof(ages) / sizeof(int);
 
-    for(int i = 0; i < length; i++) {
+    for (int i = 0; i < length; i++)
+    {
         printf("%s: %d; ", names[i], ages[i]);
     }
     puts("\n");
@@ -16,19 +17,22 @@ int main(int argc, char *argv[])
     int *cur_ages = ages;
     char **cur_names = names;
 
-    for(int i = 0; i < length; i++) {
+    for (int i = 0; i < length; i++)
+    {
         printf("%s: %d; ", cur_names[i], cur_ages[i]);
     }
     puts("\n");
 
-    for(int i = 0; i < length; i++) {
+    for (int i = 0; i < length; i++)
+    {
         printf("%s: %d; ", *(cur_names++), *(cur_ages++));
     }
     puts("\n");
 
-    for(cur_ages = ages, cur_names = names;
-            (cur_ages - ages) < length;
-            cur_ages++, cur_names++) {
+    for (cur_ages = ages, cur_names = names;
+         (cur_ages - ages) < length;
+         cur_ages++, cur_names++)
+    {
         printf("%s: %d; ", *cur_names, *cur_ages);
     }
     puts("\n");

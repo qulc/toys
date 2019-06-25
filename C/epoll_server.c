@@ -20,7 +20,7 @@ int main()
 	int optval = 1;
 	setsockopt(s, SOL_SOCKET, SO_REUSEADDR, &optval, sizeof(optval));
 
-	int b = bind(s, (struct sockaddr*) &addr, sizeof(addr));
+	int b = bind(s, (struct sockaddr *)&addr, sizeof(addr));
 	if (b == -1)
 	{
 		perror("bind error");
@@ -47,7 +47,7 @@ int main()
 			{
 				struct sockaddr_in client;
 				int addrlen = sizeof(client);
-				int conn = accept(s, (struct sockaddr*) &client, &addrlen);
+				int conn = accept(s, (struct sockaddr *)&client, &addrlen);
 
 				// set non blocking conn
 				int flags = fcntl(conn, F_GETFL, 0);
@@ -73,4 +73,3 @@ int main()
 		}
 	}
 }
-

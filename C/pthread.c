@@ -7,7 +7,6 @@ void *busy(void *str)
 	puts(str);
 }
 
-
 int main()
 {
 	pthread_t id;

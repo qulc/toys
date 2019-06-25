@@ -9,10 +9,10 @@ int main()
 
 	struct sockaddr_in addr;
 	addr.sin_family = AF_INET;
-	inet_aton("127.0.0.1", &addr.sin_addr);
 	addr.sin_port = htons(5000);
+	inet_aton("127.0.0.1", &addr.sin_addr);
 
-	connect(s, (struct sockaddr*)&addr, sizeof(addr));
+	connect(s, (struct sockaddr *)&addr, sizeof(addr));
 
 	write(s, "abcdefg", 3);
 
