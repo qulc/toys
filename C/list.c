@@ -41,6 +41,16 @@ void print(struct Node *head)
     puts("\n");
 }
 
+int length(struct Node *head)
+{
+    int count = 0;
+    for (struct Node *node = head; node != NULL; node = node->next)
+    {
+        count++;
+    }
+    return count;
+}
+
 int main()
 {
     struct Node *head = create(0);
@@ -51,5 +61,7 @@ int main()
     }
 
     print(head);
+    printf("length: %d \n", length(head));
+
     return 0;
 }
