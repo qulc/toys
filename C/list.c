@@ -92,6 +92,28 @@ void del(struct Node **head, int value)
     }
 }
 
+void sort(struct Node *head)
+{
+    int len = length(head);
+    for (int i = 0; i < len; i++)
+    {
+        for (struct Node *node = head; node != NULL; node = node->next)
+        {
+            if (!node->next)
+            {
+                break;
+            }
+
+            if (node->value < node->next->value)
+            {
+                int temp = node->next->value;
+                node->next->value = node->value;
+                node->value = temp;
+            }
+        }
+    }
+}
+
 int main()
 {
     struct Node *head = create(0);
@@ -102,7 +124,10 @@ int main()
     }
 
     insert(head, 3, 12);
-    insert(head, 4, 13);
+    insert(head, 6, 13);
+    print(head);
+
+    sort(head);
     print(head);
 
     del(&head, 0);
