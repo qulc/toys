@@ -49,11 +49,18 @@ struct Node *get(struct Node *head, int index)
     return node;
 }
 
-void insert(struct Node *head, int index, int value)
+void insert(struct Node **head, int index, int value)
 {
-    struct Node *node = get(head, index);
     struct Node *new_node = create(value);
 
+    if (index == 0)
+    {
+        new_node->next = *head;
+        *head = new_node;
+        return;
+    }
+
+    struct Node *node = get(*head, index);
     new_node->next = node->next;
     node->next = new_node;
 }
@@ -127,8 +134,8 @@ int main()
     }
     print(head);
 
-    insert(head, 0, 9);
-    insert(head, 9, 9);
+    insert(&head, 0, 9);
+    insert(&head, 9, 9);
     print(head);
 
     sort(head);
@@ -137,7 +144,6 @@ int main()
     del(&head, 0);
     del(&head, 5);
     del(&head, 9);
-
     del(&head, 10); // non existent value
     print(head);
 
