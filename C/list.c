@@ -29,18 +29,6 @@ void append(struct Node *head, int value)
     end(head)->next = new_node;
 }
 
-void print(struct Node *head)
-{
-    struct Node *node = head;
-
-    while (node)
-    {
-        printf("%d ", node->value);
-        node = node->next;
-    }
-    puts("\n");
-}
-
 int length(struct Node *head)
 {
     int count = 0;
@@ -81,7 +69,7 @@ void del(struct Node **head, int value)
         return;
     }
 
-    for (struct Node *node = first; node != NULL; node = node->next)
+    for (struct Node *node = first; node->next != NULL; node = node->next)
     {
         if (node->next->value == value)
         {
@@ -92,26 +80,41 @@ void del(struct Node **head, int value)
     }
 }
 
+void swap(struct Node *one, struct Node *two)
+{
+    struct Node temp = *one;
+    *one = *two;
+    *two = temp;
+
+    two->next = one->next;
+    one->next = two;
+}
+
 void sort(struct Node *head)
 {
     int len = length(head);
     for (int i = 0; i < len; i++)
     {
-        for (struct Node *node = head; node != NULL; node = node->next)
+        for (struct Node *node = head; node->next != NULL; node = node->next)
         {
-            if (!node->next)
-            {
-                break;
-            }
-
             if (node->value < node->next->value)
             {
-                int temp = node->next->value;
-                node->next->value = node->value;
-                node->value = temp;
+                swap(node, node->next);
             }
         }
     }
+}
+
+void print(struct Node *head)
+{
+    struct Node *node = head;
+
+    while (node)
+    {
+        printf("%d ", node->value);
+        node = node->next;
+    }
+    puts("\n");
 }
 
 int main()
@@ -122,17 +125,20 @@ int main()
     {
         append(head, i);
     }
+    print(head);
 
-    insert(head, 3, 12);
-    insert(head, 6, 13);
+    insert(head, 0, 9);
+    insert(head, 9, 9);
     print(head);
 
     sort(head);
     print(head);
 
     del(&head, 0);
-    del(&head, 12);
-    del(&head, 8);
+    del(&head, 5);
+    del(&head, 9);
+
+    del(&head, 10); // non existent value
     print(head);
 
     return 0;
