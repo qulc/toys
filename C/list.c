@@ -17,9 +17,8 @@ struct Node *create(int value)
 struct Node *end(struct Node *node)
 {
     if (node->next == NULL)
-    {
         return node;
-    }
+
     return end(node->next);
 }
 
@@ -105,9 +104,7 @@ void sort(struct Node *head)
         for (struct Node *node = head; node->next != NULL; node = node->next)
         {
             if (node->value < node->next->value)
-            {
                 swap(node, node->next);
-            }
         }
     }
 }
