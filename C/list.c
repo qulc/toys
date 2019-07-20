@@ -48,9 +48,15 @@ void append(struct List *list, int value)
     list->size++;
 }
 
-struct Node *get(struct Node *head, int index)
+struct Node *get(struct List *list, int index)
 {
-    struct Node *node = head;
+    struct Node *node = list->head;
+
+    if (index > list->size)
+    {
+        index = list->size;
+    }
+
     for (int i = 0; i < index - 1; i++)
     {
         node = node->next;
@@ -70,11 +76,10 @@ void insert(struct List *list, int index, int value)
     }
     else
     {
-        struct Node *node = get(*head, index);
+        struct Node *node = get(list, index);
         new_node->next = node->next;
         node->next = new_node;
     }
-
     list->size++;
 }
 
@@ -133,21 +138,22 @@ void print(struct List *list)
         printf("%d ", node->value);
         node = node->next;
     }
-    printf("\tlength: %ld\n", list->size);
+    printf("\t\tlength: %ld\n", list->size);
 }
 
 int main()
 {
     struct List *list = new_list();
 
-    for (int i = 0; i < 9; i++)
+    for (int i = 0; i < 10; i++)
     {
         append(list, i);
     }
     print(list);
 
+    insert(list, 99, 0); // index out of range
+    insert(list, 10, 5);
     insert(list, 0, 9);
-    insert(list, 9, 9);
     print(list);
 
     sort(list);
