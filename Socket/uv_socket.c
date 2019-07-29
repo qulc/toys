@@ -6,13 +6,7 @@ uv_loop_t *loop;
 
 void echo_read(uv_stream_t *client, ssize_t nread, const uv_buf_t *buf)
 {
-	if (nread < 0)
-	{
-		uv_close((uv_handle_t *)client, NULL);
-		return;
-	}
 	uv_buf_t *rbuf = (uv_buf_t *)malloc(sizeof(uv_buf_t));
-
 	rbuf->base = "HTTP/1.0 200 OK\r\nContent-Type: text/html\r\n\r\nfuck\n";
 	rbuf->len = 49;
 
