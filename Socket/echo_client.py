@@ -6,4 +6,4 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
 	data = s.recv(512)
 
-print(data.decode())
+print(data)
