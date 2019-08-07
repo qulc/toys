@@ -24,5 +24,5 @@ class Stock:
 
     def __str__(self):
         name = colors.white_black(f'{self.name}({self.symbol})')
-        return name + '\t' + self.change() + '\n'
+        return name + '\t' + colors.white(self.current) + '\t' + self.change() + '\n'
 

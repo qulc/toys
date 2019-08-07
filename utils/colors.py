@@ -14,3 +14,7 @@ def red(text):
 def green(text):
     return f'{Fore.GREEN}{text}{Style.RESET_ALL}'
 
+
+def white(text):
+    return f'{Fore.WHITE}{text}{Style.RESET_ALL}'
+
