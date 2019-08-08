@@ -9,12 +9,12 @@ class Stock:
     name: str
     symbol: str
     current: Decimal
-    open_price: Decimal
+    last_close: Decimal
     market_capital: float = field(default=0)
 
     def change(self):
-        quote = round(self.current - self.open_price, 2)
-        rise = round((quote / self.open_price) * 100, 2)
+        quote = round(self.current - self.last_close, 2)
+        rise = round((quote / self.last_close) * 100, 2)
 
         if quote <= 0:
             return colors.red(f'{quote} \t {rise}%')

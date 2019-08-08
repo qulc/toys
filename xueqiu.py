@@ -11,13 +11,16 @@ url = 'https://stock.xueqiu.com/v5/stock/quote.json'
 
 
 async def get_stock_info(symbol):
-    await session.get('https://xueqiu.com/')
+    if not session.cookie_jar._cookies:
+        await session.get('https://xueqiu.com/')
 
     async with session.get(url, params={'symbol': symbol}) as response:
         result = await response.json()
 
     quote = result['data']['quote']
-    # keys = ['symbol', 'name', 'current', 'high', 'low', 'open', 'market_capital', 'amount']
-    stock = Stock(symbol=quote['symbol'], name=quote['name'], current=quote['current'], open_price=quote['open'])
+    stock = Stock(
+        symbol=quote['symbol'], name=quote['name'],
+        current=quote['current'], last_close=quote['last_close']
+    )
     return stock
 
